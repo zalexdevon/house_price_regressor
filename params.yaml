@@ -8,11 +8,11 @@ do_smote: f # t: true, f: false
 
 # MODEL TRAINING
 is_first_time: f # t or f
-model_name: LGB_4
+model_name: LGB_5
 param_grid_model_desc:
       n_estimators: 300
-      max_depth: 30
-      learning_rate: 0.01
+      max_depth: 20
+      learning_rate: 0.1
       reg_alpha: 0
       reg_lambda: 0
       subsample: 0.9
@@ -30,5 +30,4 @@ monitor_plotter:
       monitor_plot_html_path: "artifacts/monitor_plot.html"
       target_val_value: 10000
       max_val_value: 50000
-      height_for_annot: 4000
       dtick_y_value: 1000

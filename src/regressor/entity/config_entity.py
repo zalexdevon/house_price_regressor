@@ -53,5 +53,4 @@ class MonitorPlotterConfig:
     monitor_plot_html_path: Path
     target_val_value: float
     max_val_value: float
-    height_for_annot: float
     dtick_y_value: float

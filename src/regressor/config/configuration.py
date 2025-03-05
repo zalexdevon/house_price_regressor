@@ -52,7 +52,6 @@ class ConfigurationManager:
         param_grid_model = myfuncs.get_param_grid_model(
             self.params.param_grid_model_desc
         )
-    
 
         model_trainer_config = ModelTrainerConfig(
             train_feature_path=config.train_feature_path,
@@ -78,7 +77,6 @@ class ConfigurationManager:
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
         config = self.config.model_evaluation
 
-
         obj = ModelEvaluationConfig(
             test_data_path=config.test_data_path,
             preprocessor_path=config.preprocessor_path,
@@ -98,7 +96,6 @@ class ConfigurationManager:
             monitor_plot_html_path=config.monitor_plot_html_path,
             target_val_value=config.target_val_value,
             max_val_value=config.max_val_value,
-            height_for_annot=config.height_for_annot,
             dtick_y_value=config.dtick_y_value,
         )
 

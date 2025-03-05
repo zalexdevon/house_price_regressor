@@ -15,7 +15,7 @@ param_grid_model_desc:
       learning_rate: 0.01
       reg_alpha: 0
       reg_lambda: 0
-      subsamle: 0.9
+      subsample: 0.9
       colsample_bytree: 0.9
 
 model_trainer_type: one # rcv: randomisedcv, gcv: gridcv, r: randomisedTrainVal, g: gridTrainVal, one: only one model

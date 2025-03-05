@@ -32,6 +32,7 @@ class PreFeatureColumnTransformer(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X, y=None) -> pd.DataFrame:
+        X = X.drop(columns=["district_nom"])
 
         self.cols = X.columns.tolist()
         return X

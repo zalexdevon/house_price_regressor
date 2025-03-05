@@ -85,6 +85,29 @@ def get_outliers(data):
     return outliers
 
 
+def get_lower_and_upper_bound_in_boxplot(data):
+    """Get lower and upper bound in boxplot of data
+
+    lower bound = Q1 - 1.5 * IQR
+    upper bound = Q3 + 1.5 * IQR
+
+    Args:
+        data (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
+    Q1 = np.percentile(data, 25)
+    Q3 = np.percentile(data, 75)
+    IQR = Q3 - Q1
+
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+
+    return lower_bound, upper_bound
+
+
 @ensure_annotations
 def get_exact_day(seconds_since_epoch: int):
     """Get the exact day from 1/1/1970
@@ -865,3 +888,21 @@ def fix_name_by_LGBM_standard(cols):
     cols = pd.Series(cols)
     cols = cols.str.replace(r"[^A-Za-z0-9_]", "_", regex=True)
     return list(cols)
+
+
+def get_describe_stats_for_numeric_cat_cols(data):
+    """Get descriptive statistics of numeric cat cols, including min, max, median
+
+    Args:
+        data (_type_): numeric cat cols
+    Returns:
+        Dataframe: min, max, median
+    """
+
+    min_of_cols = data.min().to_frame(name="min")
+    max_of_cols = data.max().to_frame(name="max")
+    median_of_cols = data.quantile([0.5]).T.rename(columns={0.5: "median"})
+
+    result = pd.concat([min_of_cols, max_of_cols, median_of_cols], axis=1).T
+
+    return result

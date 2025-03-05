@@ -95,15 +95,14 @@ class ModelTrainer:
         while True:
             if self.config.scoring == "neg_mean_squared_error":
                 train_feature_pred = self.base_model.predict(self.train_feature_data)
-                self.train_score_follow_best_val = metrics.root_mean_squared_error(
-                    self.train_target_data, train_feature_pred
+                self.train_score_follow_best_val = np.sqrt(
+                    metrics.mean_squared_error(
+                        self.train_target_data, train_feature_pred
+                    )
                 )
                 val_feature_pred = self.base_model.predict(self.val_feature_data)
-                self.best_val_score = (
-                    metrics.root_mean_squared_error(
-                        self.val_target_data, val_feature_pred
-                    )
-                    * 100
+                self.best_val_score = np.sqrt(
+                    (metrics.mean_squared_error(self.val_target_data, val_feature_pred))
                 )
 
                 return

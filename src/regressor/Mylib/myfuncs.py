@@ -120,7 +120,7 @@ def is_integer_str(s: str):
     """
 
     regex = "^[+-]?\d+$"
-    return re.match(regex, s) is not None
+    return bool(re.match(regex, s))
 
 
 @ensure_annotations
@@ -613,7 +613,6 @@ def encodeImageIntoBase64(croppedImagePath):
         return base64.b64encode(f.read())
 
 
-
 def unindent_all_lines(content):
     content = content.strip("\n")
     lines = content.split("\n")
@@ -639,12 +638,12 @@ def get_monitor_desc(param_grid_model_desc: dict):
 
 
 def process_param_name(name):
-    """if param name is max_depth -> max 
-    
+    """if param name is max_depth -> max
+
     if param name is C -> C\_\_
 
     """
-    
+
     if len(name) == 3:
         return name
 
@@ -654,25 +653,24 @@ def process_param_name(name):
     return name + "_" * (3 - len(name))
 
 
-
 def get_param_grid_model(param_grid_model: dict):
-    """Get param grid from file params.yaml 
-    
-    VD: 
-    ```python 
+    """Get param grid from file params.yaml
+
+    VD:
+    ```python
     In params.yaml
     param_grid_model_desc:
       alpha: 0.2-0.7-0.1
       l1_ratio: 0.2-0.4
-      
-    convert to 
+
+    convert to
     param_grid = {
         "alpha": np.arange(0.2, 0.7, 0.1)
         "l1_ratio": [0.2, 0.3, 0.4]
     }
     ``
     """
-    
+
     values = param_grid_model.values()
 
     values = [get_range_for_param(str(item)) for item in values]
@@ -735,6 +733,7 @@ def get_real_column_name_from_get_feature_names_out(columns):
 
     return [get_real_column_name(item) for item in columns]
 
+
 def get_params_transform_list_to_1_value(param_grid):
     """Create params with key and one value not a list with one value
 
@@ -763,6 +762,7 @@ def get_params_transform_list_to_1_value(param_grid):
     values = [item[0] for item in param_grid.values()]
     return dict(zip(param_grid.keys(), values))
 
+
 def find_feature_score_by_permutation_importance(
     train_features, train_target, fitted_model
 ):
@@ -785,6 +785,7 @@ def find_feature_score_by_permutation_importance(
     )
     result_df = result_df.sort_values(by="score", ascending=False)
     return result_df
+
 
 def find_best_n_components_of_PCA(
     train_features,
@@ -819,6 +820,7 @@ def find_best_n_components_of_PCA(
     gs.fit(features, target)
     return gs.best_params_
 
+
 def find_coef_with_regressor(train_data, model):
     """Find the feature importances of some models like: ElasticNet, Lasso
 
@@ -835,6 +837,7 @@ def find_coef_with_regressor(train_data, model):
     score = score.sort_values(by="score", ascending=False)
     return score
 
+
 def find_feature_importances(train_data, model):
     """Find the feature importances of some models like: RF, GD, SGD, LGBM
 
@@ -850,6 +853,7 @@ def find_feature_importances(train_data, model):
     )
     score = score.sort_values(by="score", ascending=False)
     return score
+
 
 def fix_name_by_LGBM_standard(cols):
     """LGBM standard state that columns name can only contain characters among letters, digit and '_'

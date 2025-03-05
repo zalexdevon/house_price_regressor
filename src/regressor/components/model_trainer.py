@@ -79,7 +79,7 @@ class ModelTrainer:
         )
 
         self.find_best_model_and_save_result(grid_search)
-    
+
     def train_1model(self):
         params = myfuncs.get_params_transform_list_to_1_value(
             self.config.param_grid_model
@@ -88,27 +88,28 @@ class ModelTrainer:
         self.base_model.fit(self.train_feature_data, self.train_target_data)
 
         self.find_val_score_1model_and_save_model()
-        
+
     def find_val_score_1model_and_save_model(self):
         myfuncs.save_python_object(self.config.best_model_path, self.base_model)
 
         while True:
-            if self.config.metric == "neg_mean_squared_error":
+            if self.config.scoring == "neg_mean_squared_error":
                 train_feature_pred = self.base_model.predict(self.train_feature_data)
-                self.train_score_follow_best_val = (
-                    metrics.root_mean_squared_error(self.train_target_data, train_feature_pred)
+                self.train_score_follow_best_val = metrics.root_mean_squared_error(
+                    self.train_target_data, train_feature_pred
                 )
                 val_feature_pred = self.base_model.predict(self.val_feature_data)
                 self.best_val_score = (
-                    metrics.root_mean_squared_error(self.val_target_data, val_feature_pred) * 100
+                    metrics.root_mean_squared_error(
+                        self.val_target_data, val_feature_pred
+                    )
+                    * 100
                 )
 
                 return
 
-            if self.config.metric == "neg_mean_absolute_error":
-                train_feature_pred = self.base_model.predict(
-                    self.train_feature_data
-                )
+            if self.config.scoring == "neg_mean_absolute_error":
+                train_feature_pred = self.base_model.predict(self.train_feature_data)
                 self.train_score_follow_best_val = metrics.mean_absolute_error(
                     self.train_target_data, train_feature_pred
                 )
@@ -174,7 +175,7 @@ class ModelTrainer:
         self.monitor_desc = result
 
     def save_list_monitor_components(self):
-        if self.config.is_first_time == 'f':
+        if self.config.is_first_time == "f":
             self.list_monitor_components = myfuncs.load_python_object(
                 self.config.list_monitor_components_path
             )

@@ -18,7 +18,7 @@ replace_dict = {
     "${P}": data_transformation,
     "${T}": model_name,
     "${E}": evaluated_model_name,
-    "${EP}": evaluated_data_transformation,
+    "${PE}": evaluated_data_transformation,
 }
 
 sub_param_for_yaml_file("config_p.yaml", "config.yaml", replace_dict)

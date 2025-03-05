@@ -24,7 +24,7 @@ model_trainer:
 
 model_evaluation:
       test_data_path: artifacts/data_correction/test_data.pkl
-      preprocessor_path: artifacts/data_transformation/${EP}/preprocessor.pkl
+      preprocessor_path: artifacts/data_transformation/${PE}/preprocessor.pkl
       model_path: artifacts/model_trainer/${E}/best_model.pkl
 
       result: artifacts/test_model_results.txt

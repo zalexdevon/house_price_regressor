@@ -26,8 +26,3 @@ sub_param_for_yaml_file("dvc_p.yaml", "dvc.yaml", replace_dict)
 
 stage_name = sys.argv[1]
 os.system(f"dvc repro {stage_name}")
-
-# Chạy xong trên colab push lên git ngay
-os.system("git add .")
-os.system('git commit -m "c"')
-os.system("git push")

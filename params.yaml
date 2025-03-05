@@ -3,16 +3,15 @@ target_col: Price # Cột mục tiêu
 scoring: neg_mean_squared_error # chỉ tiêu đánh giá
 
 # DATA TRANSFORMATION
-data_transformation: "3" # id của data_transformation
+data_transformation: "1" # id của data_transformation
 do_smote: f # t: true, f: false
 
 # MODEL TRAINING
 is_first_time: t # t or f
-model_name: ELA_52
+model_name: RID
 param_grid_model_desc:
-      alpha: 0.2-0.7-0.1
-      l1_ratio: 0.2-0.4
-model_trainer_type: r # rcv: randomisedcv, gcv: gridcv, r: randomisedTrainVal, g: gridTrainVal, one: only one model
+      alpha: 0.05
+model_trainer_type: one # rcv: randomisedcv, gcv: gridcv, r: randomisedTrainVal, g: gridTrainVal, one: only one model
 N_ITER: 5 # số tổ hợp chọn khi chạy random search
 
 # EVALUATION
@@ -22,7 +21,7 @@ evaluated_model_name: ELA_33
 # MONITOR PLOT
 monitor_plotter:
       monitor_plot_html_path: "artifacts/monitor_plot.html"
-      target_val_value: 50
+      target_val_value: 100
       max_val_value: 1000
       height_for_annot: 200
       dtick_y_value: 50

@@ -174,5 +174,5 @@ cython_debug/
 # Other 
 artifacts/*
 Data/*
-src/research_advanced_colab/
+src/research.ipynb
 research/

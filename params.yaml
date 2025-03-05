@@ -8,7 +8,7 @@ do_smote: f # t: true, f: false
 
 # MODEL TRAINING
 is_first_time: f # t or f
-model_name: XGB
+model_name:
 param_grid_model_desc:
       n_estimators: 150
       max_depth: 25

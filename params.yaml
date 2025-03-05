@@ -1,5 +1,5 @@
 # COMMON
-target_col: Price # Cột mục tiêu
+target_col: price # Cột mục tiêu
 scoring: neg_mean_squared_error # chỉ tiêu đánh giá
 
 # DATA TRANSFORMATION
